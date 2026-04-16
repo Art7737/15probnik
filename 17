@@ -1,0 +1,35 @@
+s = open("17-poliakov.txt").readlines()
+s = [int(x) for x in s]
+
+def f6(n):
+    r = ""
+    while n > 0:
+        r = str(n%6) + r
+        n //= 6
+    return r
+
+def f9(n):
+    r = ""
+    while n > 0:
+        r = str(n%9) + r
+        n //= 9
+    return r
+
+mn6 = 10 ** 20
+mn9 = 10 ** 20
+for x in s:
+    if 999 < int(f6(x)) < 10000:
+        mn6 = min(mn6, x)
+for x in s:
+    if 99 < int(f9(x)) < 1000:
+        mn9 = min(mn9, x)
+
+k = 0
+mxsm = 0
+for i in range(len(s)-1):
+    s1 = [s[i],s[i+1]]
+    if s[i] % 11 == mn6 % 5 or s[i+1] % 11 == mn6 % 5:
+        if s[i] % 7 == mn9 % 13 or s[i+1] % 7 == mn9 % 13:
+            k += 1
+            mxsm = max(mxsm, s[i]+s[i+1])
+print(k,mxsm)
