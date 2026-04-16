@@ -1,0 +1,6 @@
+alf = '0123456789ABCDEFGHIJK'
+for x in range(21):
+    x = alf[x]
+    a = int("912" + str(x) + "8745", 21) + int("791" + str(x) + "065", 21)
+    if a % 20 == 0:
+        print(a//20)
